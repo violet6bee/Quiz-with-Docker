@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Страница викторины</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p style="font-size: 24px;">Правила простые: выбери правильный вариант ответа.</p>
+<h1>Начало опроса</h1>
+<form method="post" th:action="@{/result}">
+    <div th:each="question : ${questions}">
+        <p th:text="${question.key}"></p> <br/>
+        <div th:each="answer, stat : ${question.value}">
+                <input type="radio" th:id="'option_' + ${question.key} + '_' + ${stat.index}"
+                       th:name="${question.key}" th:value="${answer}" required>
+                <label th:for="'option_' + ${question.key} + '_' + ${stat.index}" th:text="${answer}"></label><br/>
+        </div>
+    </div>
+<div class="button-container">
+    <button type="submit" class="button">Отправить</button>
+</div>
+</form>
+<style>
+
+    .button-container {
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+</style>
+</body>
+</html>
