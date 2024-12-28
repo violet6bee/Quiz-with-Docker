@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-arm64]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -30,11 +30,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
-
-
-
-      
-
 
 
       - name: Run Tests
